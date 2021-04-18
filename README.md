@@ -3,7 +3,7 @@
 
 1. cd backend
 2. npm install
-3. npm run start
+3. npm run server
 4. cd ..
 5. cd clients
 6. npm install
