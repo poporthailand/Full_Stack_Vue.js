@@ -9,3 +9,5 @@
 6. npm install
 7. npm run serve
 
+Data Base
+Link : mongodb+srv://admin:imr0991290722@cluster0.47oqx.mongodb.net/Bubble_Tea?retryWrites=true&w=majority
