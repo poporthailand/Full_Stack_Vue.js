@@ -1,0 +1,61 @@
+<template>
+
+  <div class="row justify-centent-center">
+      <div class="col-md-6">
+          <!-- Content goes here -->
+          <h1>Create Student</h1>
+          <form @submit.prevent="handleSubmitForm">
+              <div class="form-group">
+                  <label for="name">Name</label>
+                  <input type="text" v-model="student.name" required>
+              </div>
+              <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="email" v-model="student.email" required>
+              </div>
+              <div class="form-group">
+                  <label for="phone">Phone</label>
+                  <input type="text" v-model="student.phone" required>
+              </div>
+
+              <button >Create</button>
+          </form>
+      </div>
+  </div>
+</template>
+
+<script>
+import axios from 'axios';
+
+export default {
+    data(){
+        return {
+            student: {
+                name: '',
+                email: '',
+                phone: ''
+            }
+        }
+    },
+    methods: {
+        handleSubmitForm(){
+            let apiURL = 'http://localhost:4000/api/create-student';
+
+            axios.post(apiURL, this.student).then(() => {
+                this.$router.push('/view');
+                this.student = {
+                    name: '',
+                    email: '',
+                    phone: ''
+                }
+            }).catch(error => {
+                console.log(error)
+            })
+        }
+    }
+}
+</script>
+
+<style>
+
+</style>
