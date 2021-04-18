@@ -10,4 +10,4 @@
 7. npm run serve
 
 Data Base
-Link : mongodb+srv://admin:6206021612130@cluster0.47oqx.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
+Link : mongodb+srv://admin:6206021612130@cluster0.47oqx.mongodb.net/Bubble_Tea?retryWrites=true&w=majority
