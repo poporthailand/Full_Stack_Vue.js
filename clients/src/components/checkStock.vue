@@ -64,7 +64,7 @@
               
                     <p style="font-weight:bold;margin: 0 0 0 0;">{{ product.name }}</p>
                     <p style="font-weight:bold;margin: 0 0 0 0;"  >คงเหลือ {{ product.quantity }}  แก้ว</p>
-                    <button @click.prevent="handleClick(product._id)" class="insert">เพิ่ม</button>
+                     <router-link :to="{name: 'insertProduct' , params:{id : product._id} }"><button  class="insert">เพิ่ม</button></router-link>
             </td>
             
           </tr>
@@ -86,6 +86,43 @@
             </td>
             <td>
               <img src='../assets/img/makeorder/5.png' >
+            </td>
+            </tr>
+            
+        </thead>
+
+      </table>
+
+      <table  border="1" >
+        
+        <Tbody>
+          <tr >
+            <td style="height:109px;width: 2000px;" v-for="(product, i) in products.slice(5,10)" :key="product._id">
+              
+                    <p style="font-weight:bold;margin: 0 0 0 0;">{{ product.name }}</p>
+                    <p style="font-weight:bold;margin: 0 0 0 0;"  >คงเหลือ {{ product.quantity }}  แก้ว</p>
+                    <router-link :to="{name: 'insertProduct' , params:{id : product._id} }"><button  class="insert">เพิ่ม</button></router-link>
+            </td>
+            
+          </tr>
+        </Tbody>
+
+        <thead>
+          <tr>
+            <td  style="height:270px;">
+              <img src='../assets/img/makeorder/6.png' >
+            </td>
+            <td>
+              <img src='../assets/img/makeorder/7.png' >
+            </td>
+            <td>
+              <img src='../assets/img/makeorder/8.png' >
+            </td>
+            <td>
+              <img src='../assets/img/makeorder/9.png' >
+            </td>
+            <td>
+              <img src='../assets/img/makeorder/10.png' >
             </td>
             </tr>
             

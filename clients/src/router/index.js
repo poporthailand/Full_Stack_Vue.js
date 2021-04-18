@@ -6,6 +6,7 @@ import homePage from '@/components/homePage.vue'
 import makeOrder from '@/components/makeOrder.vue'
 import checkStock from '@/components/checkStock.vue'
 import historySale from '@/components/historySale.vue'
+import insertProduct from '@/components/insertProduct.vue'
 
 
 
@@ -25,6 +26,12 @@ const routes = [
     name: 'checkStock',
     component: checkStock
   },
+  {
+    path: '/insertProduct/:id',
+    name: 'insertProduct',
+    component: insertProduct
+  },
+  
   {
     path: '/historySale',
     name: 'historySale',

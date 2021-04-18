@@ -43,18 +43,7 @@
             height: 95%;
           "
         >
-        <div class="block" >
-            <center>
-                <div class="field">
-                    <img src="../assets/img/makeorder/1.png">
-                    <p style="font-weight:bold;margin: 0 0 0 0;">ชานมไต้หวัน</p>
-                    <p style="font-weight:bold;margin: 0 0 0 0;">คงเหลือ {{  }} แก้ว</p>
-                    <input type="number" min=1 v-model="insert" >
-                    <button @click="handleClick()" class="insert">เพิ่ม</button>
-                </div>
-            </center>
-           
-        </div>
+        
         
         </div>
       </div>

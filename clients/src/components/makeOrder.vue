@@ -216,6 +216,12 @@ export default {
       message : '',
       price: '',
       product: {},
+      history: {
+        menu: '',
+        topping: '',
+        size: '',
+        price: ''
+      },
 
     }
   },
@@ -240,15 +246,30 @@ export default {
         if (this.menu == this.product[i].name){
             this.product = this.product[i]
             this.product.quantity -= 1
-            
-            let apiURL = `http://localhost:4000/api/update/${this.product._id}`;
+            // create history
+            let apiURL = 'http://localhost:4000/api-history/create';
+
+            axios.post(apiURL, this.student).then(() => {
+                //this.$router.push('/view');
+                this.student = {
+                    name: '',
+                    email: '',
+                    phone: ''
+                }
+            }).catch(error => {
+                console.log(error)
+            })
+
+            //  update data
+            apiURL = `http://localhost:4000/api/update/${this.product._id}`;
             axios.put(apiURL, this.product).then((res) => {
                 console.log(res)
                 //this.$router.push('/makeOrder')
             }).catch(error => {
                 console.log(error)
             })
-            
+
+            //fetch data
             apiURL = 'http://localhost:4000/api';
             axios.get(apiURL).then(res => {
                 this.product = res.data
@@ -265,12 +286,35 @@ export default {
   },
   updated(){
 
-    if (this.size == 'S' && this.topping == 'ไม่ใส่') this.price = 20;
-    else if (this.size == 'M' && this.topping == 'ไม่ใส่') this.price = 25;
-    else if (this.size == 'L' && this.topping == 'ไม่ใส่') this.price = 30;
-    else if (this.size == 'S' ) this.price = 25;
-    else if (this.size == 'M' ) this.price = 30;
-    else if (this.size == 'L' ) this.price = 35;
+    if (this.size == 'S' && this.topping == 'ไม่ใส่')
+    {   this.price = 20;
+        this.history.price = this.price;
+    }
+     
+    else if (this.size == 'M' && this.topping == 'ไม่ใส่')
+    { this.price = 25;
+      this.history.price = this.price;
+    } 
+    else if (this.size == 'L' && this.topping == 'ไม่ใส่')
+    {
+      this.price = 30;
+      this.history.price = this.price;
+    } 
+    else if (this.size == 'S' ) 
+    {
+      this.price = 25;
+      this.history.price = this.price;
+    }
+    else if (this.size == 'M' ) 
+    {
+      this.price = 30;
+      this.history.price = this.price;
+    }
+    else if (this.size == 'L' )
+    {
+      this.price = 35;
+      this.history.price = this.price;
+    } 
 
 
     if (this.topping == 'ไม่ใส่')

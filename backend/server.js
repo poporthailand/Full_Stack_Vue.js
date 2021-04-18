@@ -19,6 +19,7 @@ mongoose.connect(database.db, {
 
 //const studentAPI = require('../backend/routes/student.route');
 const productAPI = require('../backend/routes/products');
+const historyAPI = require('../backend/routes/history');
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -28,6 +29,7 @@ app.use(cors());
 
 // API
 app.use('/api', productAPI);
+app.use('/api-history', historyAPI);
 //app.use('/api', studentAPI);
 
 // CREATE PORT
