@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const database = require('./database');
 const bodyParser = require('body-parser');
 
+
 //Connect MongoDB
 mongoose.Promise = global.Promise;
 mongoose.connect(database.db, {
