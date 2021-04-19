@@ -55,7 +55,7 @@
                 "
               >
                 <pre style="font-size: 1px"> </pre>
-                <p style="margin-top: 10px; font-size: 30px">Menu</p>
+                <p style="margin-top: 10px; font-size: 30px" >Menu</p>
                 <select
                   align="center"
                   style="
@@ -249,12 +249,13 @@ export default {
             // create history
             let apiURL = 'http://localhost:4000/api-history/create';
 
-            axios.post(apiURL, this.student).then(() => {
+            axios.post(apiURL, this.history).then(() => {
                 //this.$router.push('/view');
-                this.student = {
-                    name: '',
-                    email: '',
-                    phone: ''
+                this.history = {
+                    menu: '',
+                    topping: '',
+                    size: '',
+                    price: ''
                 }
             }).catch(error => {
                 console.log(error)
@@ -286,35 +287,19 @@ export default {
   },
   updated(){
 
-    if (this.size == 'S' && this.topping == 'ไม่ใส่')
-    {   this.price = 20;
-        this.history.price = this.price;
-    }
-     
-    else if (this.size == 'M' && this.topping == 'ไม่ใส่')
-    { this.price = 25;
-      this.history.price = this.price;
-    } 
-    else if (this.size == 'L' && this.topping == 'ไม่ใส่')
-    {
-      this.price = 30;
-      this.history.price = this.price;
-    } 
-    else if (this.size == 'S' ) 
-    {
-      this.price = 25;
-      this.history.price = this.price;
-    }
-    else if (this.size == 'M' ) 
-    {
-      this.price = 30;
-      this.history.price = this.price;
-    }
-    else if (this.size == 'L' )
-    {
-      this.price = 35;
-      this.history.price = this.price;
-    } 
+
+    this.history.menu = this.menu
+    this.history.price = this.price
+    this.history.topping = this.topping
+    this.history.size = this.size
+    
+
+    if (this.size == 'S' && this.topping == 'ไม่ใส่') this.price = 20;
+    else if (this.size == 'M' && this.topping == 'ไม่ใส่') this.price = 25;
+    else if (this.size == 'L' && this.topping == 'ไม่ใส่') this.price = 30;
+    else if (this.size == 'S' ) this.price = 25;
+    else if (this.size == 'M' )  this.price = 30;
+    else if (this.size == 'L' )  this.price = 35;
 
 
     if (this.topping == 'ไม่ใส่')
@@ -358,10 +343,22 @@ export default {
 </script>
 
 <style scoped>
+
+select {
+  cursor: pointer;
+}
+p {
+  cursor:default;
+}
+button:hover {
+  opacity: 0.5;
+}
+
 span {
   font-size: 25px;
   background-color:rgb(240, 234, 234);
- 
+  cursor:default;
+  
 }
 .ctn {
   background-color: #faa9ba;
@@ -393,6 +390,7 @@ span {
   height: 100%;
   float: left;
 }
+
 .rightbody {
   width: 50%;
   height: 100%;
@@ -410,6 +408,9 @@ span {
   height: 70%;
   color: rgb(255, 255, 255);
   background-color: #f79b8f;
+}
+.blockheader:hover {
+  background-color: #d1857b;
 }
 
 .headerbutton {

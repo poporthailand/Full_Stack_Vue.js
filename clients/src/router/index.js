@@ -8,8 +8,6 @@ import checkStock from '@/components/checkStock.vue'
 import historySale from '@/components/historySale.vue'
 import insertProduct from '@/components/insertProduct.vue'
 
-
-
 const routes = [
   {
     path: '/',

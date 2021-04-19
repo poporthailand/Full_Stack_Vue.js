@@ -37,11 +37,17 @@ export default {
 </script>
 
 <style scoped>
+button:hover {
+  opacity: 0.5;
+}
 .ctn {
     background-color: rgb(252, 232, 206);
     width: 100%;
     height: 969px;
     
+  }
+  .header:hover {
+    opacity: 0.8;
   }
   .header {
     background-color: #faa9ba;
@@ -56,6 +62,9 @@ export default {
     background-color: #fab3c3;
     width: 100%;
     height: 100px;
+  }
+  .footer:hover {
+    opacity: 0.8;
   }
   .bodyleft {
     width: 33.3%;

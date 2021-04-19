@@ -168,6 +168,9 @@ export default {
 </script>
 
 <style scoped>
+button:hover {
+  opacity: 0.5;
+}
 td{
   text-align: center;
 }
@@ -181,7 +184,9 @@ input {
 }
 p {
     font-weight:bold;
-    
+}
+p:hover {
+  cursor: default;
 }
 img {
     width: 250px;
@@ -225,6 +230,9 @@ img {
   height: 70%;
   color: rgb(255, 255, 255);
   background-color: #facacb;
+}
+.blockheader:hover {
+  background-color: #d4abac;
 }
 
 .headerbutton {
