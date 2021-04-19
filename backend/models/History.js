@@ -13,6 +13,10 @@ const historySchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  numberofglass: {
+    type: String,
+    required: true
+  },
   price: {
     type: String,
     required: true

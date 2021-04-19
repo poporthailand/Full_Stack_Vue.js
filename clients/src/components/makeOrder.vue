@@ -65,6 +65,7 @@
                     height: 40px;
                   "
                   v-model="menu"
+                  @click="clickmenu"
                 >
                   <option value="ชานมไต้หวัน">ชานมไต้หวัน</option>
                   <option value="ชาเขียว">ชาเขียว</option>
@@ -100,6 +101,7 @@
                     height: 40px;
                   "
                   v-model="topping"
+                  @click="clicksize_topping"
                 >
                   <option value="ไม่ใส่">ไม่ใส่</option>
                   <option value="ไข่มุก">ไข่มุก</option>
@@ -132,8 +134,9 @@
                     height: 40px;
                   "
                   v-model="size"
+                  @click="clicksize_topping"
                 >
-                  <option value="S">เล็ก(S)</option>
+                  <option value="S" >เล็ก(S)</option>
                   <option selected value="M">กลาง(M)</option>
                   <option value="L">ใหญ่(L)</option>
                 </select>
@@ -167,7 +170,7 @@
                 </select>
               </div>
 
-              <button @click="handlepreview" class="headerbutton" style="margin-top: 30px;padding: 15px 30px;font-size:20px;background-color:#fab3c3;color: #000;">Preview</button>
+              
 
             </center>
           </div>
@@ -183,17 +186,21 @@
             "
           >
          <center> <p style="font-size:50px;font-weight: bold;">Preview</p>
-          <div v-show="show">
+          <div >
             <div style="width:393px;height:408px; background-color: rgba(0,0,0,0.1);">
-              <img style="margin: 0px 0 0 0;" :src="image">
+              <img style="margin: 0 0 0 0;" :src="image">
             </div>
             
             </div>
-          <div style="margin-top: 30px;"><span v-show="show" >{{ message }}</span></div>
-          <div style="margin-top: 10px;"><span v-show="show" >ราคา : {{ price }} บาท</span></div>
+            <div style="margin-top: 10px;"><p style="font-size:20px" >จำนวนสินค้าในคลัง : {{ quantity }}</p></div>
+          <div style="margin-top: 20px;"><span  >{{ message }}</span></div>
+          <div style="margin-top: 5px;"><span  >ราคา : {{ tmp }} บาท</span></div>
+          <div style="margin-top: 5px;"><span  >จำนวน</span> <input @click="totalprice" type="number" min=1 :max='full'  v-model="unitquantity"></div>
           
           
-          <button v-show="show" @click.prevent="handleSubmitForm" class="headerbutton" style="margin-top: 85px;padding: 15px 30px;font-size:20px;background-color:#fab3c3;color: #000;">Make Order</button>
+          <button v-show="btn"  @click.prevent="handleSubmitForm" class="headerbutton" style="margin-top: 20px;padding: 15px 30px;font-size:20px;background-color:#fab3c3;color: #000;">Make Order</button>
+          
+          <button v-show="btn1"   class="btn-not" style="cursor:not-allowed;margin-top: 20px;padding: 15px 30px;font-size:20px;">Make Order</button>
             </center>
           </div>
         </div>
@@ -207,21 +214,27 @@ import axios from 'axios'
 export default {
   data(){
     return {
-      show: false,
+      tmp: '25',
+      full: '',
+      btn : true,
+      btn1 : false,
       image: '',
       menu: 'ชานมไต้หวัน',
       topping: 'ไม่ใส่',
       size: 'M',
       level: 'หวานปานกลาง',   
       message : '',
-      price: '',
+      price: 25,
+      unitquantity : 1,
       product: {},
       history: {
         menu: '',
         topping: '',
         size: '',
+        numberofglass: '',
         price: ''
       },
+      quantity: null,
 
     }
   },
@@ -230,31 +243,88 @@ export default {
         axios.get(apiURL).then(res => {
             this.product = res.data
             console.log(this.product)
+            // set app data
+            this.quantity = this.product[0].quantity
         }).catch(error => {
             console.log(error)
-        })
+        })  
+        
+        
+        
   },
   methods: {
-    handlepreview(){
-      this.show = true
+    clickmenu(){
+      for(var i in this.product){
+      if(this.product[i].quantity == 0 && this.product[i].name === this.menu){
+        this.btn = false
+        this.btn1 = true
+        break;
+      }
+      this.btn = true
+      this.btn1 = false
+    }
+    },
+    totalprice(){
+      
+      this.tmp = this.price 
+      this.tmp = this.tmp * this.unitquantity
+    },
+    clicksize_topping(){
+        //console.log('++')
+       if ((this.size == 'S' && this.topping == 'ไม่ใส่') && this.unitquantity == 1 ) this.price = this.tmp = 20
+       else if ((this.size == 'S' && this.topping == 'ไม่ใส่') && this.unitquantity > 1 ) {
+           this.price = this.tmp = 20
+           this.tmp = this.price 
+            this.tmp = this.tmp * this.unitquantity
+       }
+    
+      else if ((this.size == 'M' && this.topping == 'ไม่ใส่') && this.unitquantity == 1 ) this.price = this.tmp = 25
+      else if ((this.size == 'M' && this.topping == 'ไม่ใส่') && this.unitquantity > 1 ) {
+           this.price = this.tmp = 25
+           this.tmp = this.price 
+            this.tmp = this.tmp * this.unitquantity
+       }
+      else if ((this.size == 'L' && this.topping == 'ไม่ใส่') && this.unitquantity == 1 ) this.price = this.tmp = 30
+      else if ((this.size == 'L' && this.topping == 'ไม่ใส่') && this.unitquantity > 1 ) {
+           this.price = this.tmp = 30
+           this.tmp = this.price 
+            this.tmp = this.tmp * this.unitquantity
+       }
+      else if (this.size == 'S' && this.unitquantity == 1) this.price = this.tmp = 25;
+      else if (this.size == 'S' && this.unitquantity > 1 ) {
+        this.price = this.tmp = 25;
+        this.tmp = this.price 
+        this.tmp = this.tmp * this.unitquantity
+      }
+      else if (this.size == 'M' && this.unitquantity == 1 )  this.price = this.tmp = 30;
+      else if (this.size == 'M' && this.unitquantity > 1 ) {
+        this.price = this.tmp = 30;
+        this.tmp = this.price 
+        this.tmp = this.tmp * this.unitquantity
+      }
+      else if (this.size == 'L' && this.unitquantity == 1 )  this.price = this.tmp = 35;
+      else if (this.size == 'L' && this.unitquantity > 1 ) {
+        this.price = this.tmp = 35;
+        this.tmp = this.price 
+        this.tmp = this.tmp * this.unitquantity
+      }
     },
     handleSubmitForm(){
-      console.log('++');
+      //console.log('++');
         let r = confirm('ต้องการทำรายการนี้ ?')
         if (r){
       for(let i = 0; i < this.product.length; i++){
         if (this.menu == this.product[i].name){
             this.product = this.product[i]
-            this.product.quantity -= 1
+            this.product.quantity -= this.unitquantity
             // create history
             let apiURL = 'http://localhost:4000/api-history/create';
-
             axios.post(apiURL, this.history).then(() => {
-                //this.$router.push('/view');
                 this.history = {
                     menu: '',
                     topping: '',
                     size: '',
+                    numberofglass: '',
                     price: ''
                 }
             }).catch(error => {
@@ -281,26 +351,74 @@ export default {
             
           }
        }
+       this.$router.go(this.$router.currentRoute)
       }
     }
     
   },
   updated(){
+    //console.log(this.product.length)
 
+    if(this.product[0].quantity == 0 && this.product[0].name === this.menu){
+            this.btn = false
+            this.btn1 = true
+            console.log('123  ')
+            
+          }
 
-    this.history.menu = this.menu
-    this.history.price = this.price
-    this.history.topping = this.topping
-    this.history.size = this.size
+    if(this.product[0].name == this.menu){
+        this.full = this.product[0].quantity    
+    }
+    else if(this.product[1].name == this.menu){
+        this.full = this.product[1].quantity  
+    }
+    else if(this.product[2].name == this.menu){
+        this.full = this.product[2].quantity   
+    }
+    else if(this.product[3].name == this.menu){
+        this.full = this.product[3].quantity   
+    }
+    else if(this.product[4].name == this.menu){
+        this.full = this.product[4].quantity   
+    }
+    else if(this.product[5].name == this.menu){
+        this.full = this.product[5].quantity   
+    }
+    else if(this.product[6].name == this.menu){
+        this.full = this.product[6].quantity   
+    }
+    else if(this.product[7].name == this.menu){
+        this.full = this.product[7].quantity   
+    }
+    else if(this.product[8].name == this.menu){
+        this.full = this.product[8].quantity   
+    }
+    else if(this.product[9].name == this.menu){
+        this.full = this.product[9].quantity   
+    }
+     
+      
     
 
+    
+    
+    
+
+    this.history.menu = this.menu
+    this.history.price = this.tmp
+    this.history.topping = this.topping
+    this.history.numberofglass = this.unitquantity
+    this.history.size = this.size
+    //console.log( this.history.menu + " " + this.history.topping + " " + this.history.size +" " + this.history.numberofglass + " " + this.history.price)
+    
+/*
     if (this.size == 'S' && this.topping == 'ไม่ใส่') this.price = 20;
     else if (this.size == 'M' && this.topping == 'ไม่ใส่') this.price = 25;
     else if (this.size == 'L' && this.topping == 'ไม่ใส่') this.price = 30;
     else if (this.size == 'S' ) this.price = 25;
     else if (this.size == 'M' )  this.price = 30;
     else if (this.size == 'L' )  this.price = 35;
-
+*/
 
     if (this.topping == 'ไม่ใส่')
       this.message = this.menu +', Size : '+ this.size +', '+ this.level
@@ -308,33 +426,43 @@ export default {
 
     if (this.menu == 'ชานมไต้หวัน'){
           this.image = require('@/assets/img/makeorder/1.png')
+          this.quantity = this.product[0].quantity
       }
       else if (this.menu == 'ชาเขียว'){
           this.image = require('@/assets/img/makeorder/2.png')
+          this.quantity = this.product[1].quantity
       }
        else if (this.menu == 'โกโก้'){
           this.image = require('@/assets/img/makeorder/3.png')
+          this.quantity = this.product[2].quantity
       }
        else if (this.menu == 'นมสด'){
           this.image = require('@/assets/img/makeorder/4.png')
+          this.quantity = this.product[3].quantity
       }
        else if (this.menu == 'ชาดำ'){
           this.image = require('@/assets/img/makeorder/5.png')
+          this.quantity = this.product[4].quantity
       }
        else if (this.menu == 'กาแฟ'){
           this.image = require('@/assets/img/makeorder/6.png')
+          this.quantity = this.product[5].quantity
       }
        else if (this.menu == 'ช็อกโกแลต'){
           this.image = require('@/assets/img/makeorder/7.png')
+          this.quantity = this.product[6].quantity
       }
        else if (this.menu == 'ช็อกโกแลตมิ้น'){
           this.image = require('@/assets/img/makeorder/8.png')
+          this.quantity = this.product[7].quantity
       }
        else if (this.menu == 'นมสตอเบอรี่'){
           this.image = require('@/assets/img/makeorder/9.png')
+          this.quantity = this.product[8].quantity
       }
        else if (this.menu == 'ชานมมันม่วง'){
           this.image = require('@/assets/img/makeorder/10.png')
+          this.quantity = this.product[9].quantity
       }
     
   }
@@ -343,7 +471,17 @@ export default {
 </script>
 
 <style scoped>
-
+.btn-not {
+  background-color: rgb(202, 38, 38);
+  color: rgb(255, 255, 255);
+  padding: 20px 30px;
+  font-size: 25px;
+  border-radius: 15px;
+  border: 5px solid rgb(124, 122, 122);
+}
+.btn-not:hover {
+  opacity: 1;
+}
 select {
   cursor: pointer;
 }
@@ -358,7 +496,6 @@ span {
   font-size: 25px;
   background-color:rgb(240, 234, 234);
   cursor:default;
-  
 }
 .ctn {
   background-color: #faa9ba;

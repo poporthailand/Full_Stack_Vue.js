@@ -45,14 +45,15 @@
         "
       >
         <pre></pre>
-        <table align="center" style="background: white; margin-top: 10px;border: 2px solid rgb(61, 86, 226);">
+        <table align="center" style="background: white; margin-top: 10px;">
           <tr style="font-weight: bold; font-size: 18px">
             <td style="width: 100px">รายการที่</td>
             <td style="width: 400px">เมนู</td>
             <td style="width: 250px">ท็อปปิ้ง</td>
             <td style="width: 250px">ขนาดแก้ว</td>
+            <td style="width: 100px">จำนวนแก้ว</td>
             <td style="width: 250px">ราคา</td>
-            <td style="width: 300px; border-right: 2px solid rgb(61, 86, 226)">
+            <td style="width: 300px; ">
               วันที่
             </td>
           </tr>
@@ -63,9 +64,10 @@
             style="font-size: 17px"
           >
             <td style="width: 100px">{{ i + 1 }}</td>
-            <td style="width: 400px">{{ history.menu }}</td>
+            <td style="text-align:left;width: 400px">{{ history.menu }}</td>
             <td style="width: 250px">{{ history.topping }}</td>
             <td style="width: 250px">{{ history.size }}</td>
+            <td style="width: 100px">{{ history.numberofglass }}</td>
             <td style="width: 250px">{{ history.price }}</td>
             <td style="width: 300px;">
               {{ history.date.slice(0, 10) }}

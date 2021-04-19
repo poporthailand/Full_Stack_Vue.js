@@ -18,6 +18,7 @@ router.post('/create', async (req, res) => {
       menu: req.body.menu,
       topping: req.body.topping,
       size: req.body.size,
+      numberofglass: req.body.numberofglass,
       price: req.body.price
     })
     try {
