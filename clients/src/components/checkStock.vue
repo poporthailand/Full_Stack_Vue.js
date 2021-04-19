@@ -60,7 +60,7 @@
         
         <Tbody>
           <tr >
-            <td style="height:109px;width: 2000px;" v-for="(product, i) in products.slice(0,5)" :key="product._id">
+            <td style="height:109px;width: 2000px;" v-for="(product) in products.slice(0,5)" :key="product._id">
               
                     <p style="font-weight:bold;margin: 0 0 0 0;">{{ product.name }}</p>
                     <p style="font-weight:bold;margin: 0 0 0 0;"  >คงเหลือ {{ product.quantity }}  แก้ว</p>
@@ -97,7 +97,7 @@
         
         <Tbody>
           <tr >
-            <td style="height:109px;width: 2000px;" v-for="(product, i) in products.slice(5,10)" :key="product._id">
+            <td style="height:109px;width: 2000px;" v-for="(product) in products.slice(5,10)" :key="product._id">
               
                     <p style="font-weight:bold;margin: 0 0 0 0;">{{ product.name }}</p>
                     <p style="font-weight:bold;margin: 0 0 0 0;"  >คงเหลือ {{ product.quantity }}  แก้ว</p>

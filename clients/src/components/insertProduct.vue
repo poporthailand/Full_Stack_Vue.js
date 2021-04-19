@@ -87,6 +87,13 @@ button {
     font-weight: bold;
     margin-left: 30px;
 }
+button:hover{
+    background-color: rgb(196, 189, 189);
+}
+input:hover {
+    background-color: rgb(255, 255, 255);
+}
+
 label {
     font-size: 50px;
     color: white;
@@ -97,6 +104,7 @@ input {
     font-size: 30px;
     margin: 0 0 0 20px;
     border: 1px solid #111;
+    background-color: rgb(247, 231, 231);
 }
 .ctn {
   background-color: #cafdee;
