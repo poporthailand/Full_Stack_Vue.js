@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "nodemon server",
     "clients": "npm run serve --prefix ../clients",
-    "dev": "concurrently \"npm run server\" \"npm run clients\"",
+    "dev": "concurrently \"npm run server\" \"npm run clients\""
     
   },
   "author": "",
