@@ -312,8 +312,8 @@ export default {
     },
     handleSubmitForm(){
       //console.log('++');
-        let r = confirm('ต้องการทำรายการนี้ ?')
-        if (r){
+       // let r = confirm('ต้องการทำรายการนี้ ?')
+       // if (r){
       for(let i = 0; i < this.product.length; i++){
         if (this.menu == this.product[i].name){
             this.product = this.product[i]
@@ -341,19 +341,12 @@ export default {
                 console.log(error)
             })
 
-            //fetch data
-            apiURL = 'http://localhost:4000/api';
-            axios.get(apiURL).then(res => {
-                this.product = res.data
-                console.log(this.product)
-            }).catch(error => {
-                console.log(error)
-            })
+            
             
           }
        }
        this.$router.go(this.$router.currentRoute)
-      }
+     // }
     }
     
   },
