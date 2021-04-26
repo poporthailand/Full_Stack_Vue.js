@@ -75,7 +75,7 @@
                   <option value="กาแฟ">กาแฟ</option>
                   <option value="ช็อกโกแลต">ช็อกโกแลต</option>
                   <option value="ช็อกโกแลตมิ้น">ช็อกโกแลตมิ้น</option>
-                  <option value="นมสตอเบอรี่">นมสตอเบอรี่</option>
+                  <option value="ชาลูกอมรสมะนาว">ชาลูกอมรสมะนาว</option>
                   <option value="ชานมมันม่วง">ชานมมันม่วง</option>
                 </select>
               </div>
@@ -457,7 +457,7 @@ export default {
           this.image = require('@/assets/img/makeorder/8.png')
           this.quantity = this.product[7].quantity
       }
-       else if (this.menu == 'นมสตอเบอรี่'){
+       else if (this.menu == 'ชาลูกอมรสมะนาว'){
           this.image = require('@/assets/img/makeorder/9.png')
           this.quantity = this.product[8].quantity
       }
