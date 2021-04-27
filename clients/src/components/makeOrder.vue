@@ -196,12 +196,12 @@
             <div style="margin-top: 10px;"><p style="font-size:20px" >จำนวนสินค้าในคลัง : {{ quantity }}</p></div>
           <div style="margin-top: 20px;"><span  >{{ message }}</span></div>
           <div style="margin-top: 5px;"><span  >ราคา : {{ tmp }} บาท</span></div>
-          <div style="margin-top: 5px;"><span  >จำนวน</span> <input @click="totalprice" type="number" min=1 :max='full'  v-model="unitquantity"></div>
+          <div v-show="btn" style="margin-top: 5px;"><span  >จำนวน</span> <input @click="totalprice" type="number" min=1 :max='full'  v-model="unitquantity"></div>
           
           
           <button v-show="btn"  @click.prevent="handleSubmitForm" class="headerbutton" style="margin-top: 20px;padding: 15px 30px;font-size:20px;background-color:#fab3c3;color: #000;">Make Order</button>
           
-          <button v-show="btn1"   class="btn-not" style="cursor:not-allowed;margin-top: 20px;padding: 15px 30px;font-size:20px;">Make Order</button>
+          <button v-show="btn1"   class="btn-not" style="cursor:not-allowed;margin-top: 55px;padding: 15px 30px;font-size:20px;">Make Order</button>
             </center>
           </div>
         </div>
