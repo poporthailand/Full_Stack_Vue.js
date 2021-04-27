@@ -314,12 +314,22 @@ export default {
       //console.log('++');
        // let r = confirm('ต้องการทำรายการนี้ ?')
        // if (r){
-      for(let i = 0; i < this.product.length; i++){
-        if (this.menu == this.product[i].name){
+       for(let i = 0; i < this.product.length; i++){
+          if (this.menu == this.product[i].name){
             this.product = this.product[i]
             this.product.quantity -= this.unitquantity
+
+            //  update data
+            let apiURL = `http://localhost:4000/api/update/${this.product._id}`;
+            axios.put(apiURL, this.product).then((res) => {
+                console.log(res)
+                //this.$router.push('/makeOrder')
+            }).catch(error => {
+                console.log(error)
+            })
+
             // create history
-            let apiURL = 'http://localhost:4000/api-history/create';
+             apiURL = 'http://localhost:4000/api-history/create';
             axios.post(apiURL, this.history).then(() => {
                 this.history = {
                     menu: '',
@@ -328,15 +338,6 @@ export default {
                     numberofglass: '',
                     price: ''
                 }
-            }).catch(error => {
-                console.log(error)
-            })
-
-            //  update data
-            apiURL = `http://localhost:4000/api/update/${this.product._id}`;
-            axios.put(apiURL, this.product).then((res) => {
-                console.log(res)
-                //this.$router.push('/makeOrder')
             }).catch(error => {
                 console.log(error)
             })
