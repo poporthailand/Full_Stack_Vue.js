@@ -1,7 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import createComponent from '@/components/createComponent.vue'
-import editComponent from '@/components/editComponent.vue'
-import listComponent from '@/components/listComponent.vue'
 import homePage from '@/components/homePage.vue'
 import makeOrder from '@/components/makeOrder.vue'
 import checkStock from '@/components/checkStock.vue'
@@ -34,16 +31,6 @@ const routes = [
     path: '/historySale',
     name: 'historySale',
     component: historySale
-  },
-  {
-    path: '/view',
-    name: 'view',
-    component: listComponent
-  },
-  {
-    path: '/edit/:id',
-    name: 'edit',
-    component: editComponent
   }
 ]
 
