@@ -310,7 +310,7 @@ export default {
         this.tmp = this.tmp * this.unitquantity
       }
     },
-    handleSubmitForm(){
+    async handleSubmitForm(){
       //console.log('++');
        // let r = confirm('ต้องการทำรายการนี้ ?')
        // if (r){
@@ -321,7 +321,7 @@ export default {
 
             //  update data
             let apiURL = `http://localhost:4000/api/update/${this.product._id}`;
-            axios.put(apiURL, this.product).then((res) => {
+            await axios.put(apiURL, this.product).then((res) => {
                 console.log(res)
                 //this.$router.push('/makeOrder')
             }).catch(error => {
@@ -330,7 +330,7 @@ export default {
 
             // create history
              apiURL = 'http://localhost:4000/api-history/create';
-            axios.post(apiURL, this.history).then(() => {
+              await axios.post(apiURL, this.history).then(() => {
                 this.history = {
                     menu: '',
                     topping: '',
