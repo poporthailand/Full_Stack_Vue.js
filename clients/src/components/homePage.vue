@@ -5,7 +5,7 @@
         <img src="../assets/img/main/banner3.png" style="width:100%">
         
       </div>
-      <div class="Body" style=" backgroundImage: url(https://1.bp.blogspot.com/-TBd-qil9b3U/YIiKQwttW6I/AAAAAAAAAA4/GPLWSC2ADZ86bXo5y1IFR3MiKEjd23G9wCLcBGAsYHQ/s1920/bgcenter.png) ">
+      <div class="Body" style="backgroundImage:url(https://1.bp.blogspot.com/-TBd-qil9b3U/YIiKQwttW6I/AAAAAAAAAA4/GPLWSC2ADZ86bXo5y1IFR3MiKEjd23G9wCLcBGAsYHQ/s1920/bgcenter.png)">
         <div class="bodyleft" >
           <center>
       
