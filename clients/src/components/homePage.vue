@@ -2,7 +2,7 @@
     <center>
  <div class="ctn">
       <div class="header" >
-        <img src="../assets/img/main/banner3.png" style="width:100%">
+        <img src="../assets/img/main/banner3.png" style="width:100%; height:100%">
         
       </div>
       <div class="Body" style="backgroundImage:url(https://1.bp.blogspot.com/-TBd-qil9b3U/YIiKQwttW6I/AAAAAAAAAA4/GPLWSC2ADZ86bXo5y1IFR3MiKEjd23G9wCLcBGAsYHQ/s1920/bgcenter.png)">
@@ -26,7 +26,7 @@
         
       </div>
       <div class="footer" >
-        <img src="../assets/img/main/footage.png" style="width:100%">
+        <img src="../assets/img/main/footage.png" style="width:100%; height:100%">
       </div>
     </div>
   </center>
